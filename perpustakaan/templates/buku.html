@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<!-- digunakan untuk mengetes sebelum membuat database
+<h2>Daftar buku</h2>
+{% for judul in judul %}
+<li>{{ judul }}</li>
+{% endfor %}
+<br>
+{{ penulis }}  
+-->
+
+<!-- digunakan setelah membuat database (ORM) -->
+<h2>Daftar buku</h2>
+{% for buku in books %}
+<!-- menampilkan judul buku dari database buku -->
+<li>{{ buku.judul }}</li>
+{% endfor %}
+{% endblock %}

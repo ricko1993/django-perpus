@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- menampilkan pesan alert , pesan diambil dari views.py-->
+            {% if pesan %}
+                <div class="alert" alert-success>{{ pesan }}</div>
+            {% endif %}
+
+            <!-- jangan lupa isi action -->
+            <form action="/tambah-buku/" method="post">
+                <!-- tambahkan csrf_token -->
+                {% csrf_token %}
+                <!-- tambahkan .as_p agar form terurut seperti paragraf -->
+                {{ form.as_p }} 
+                <!-- tambahkan button -->
+                <button class="btn btn-primary">Tambah Buku</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
