@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- 
+                copy semua dari tambah-buku.html
+                jangan lupa ubah action {% url 'ubah_buku' buku.id %}
+             -->
+      <h3>Ubah: {{ buku.judul }}</h3>
+
+      <!-- menampilkan pesan sukses -->
+      {% for message in messages %} 
+      {% if message %}
+      <div class="alert alert-success">{{ message }}</div>
+      {% endif %} 
+      {% endfor %}
+
+      <form action="{% url 'ubah_buku' buku.id %}" method="post">
+        <!-- tambahkan csrf_token -->
+        {% csrf_token %}
+        <!-- tambahkan .as_p agar form terurut seperti paragraf -->
+        {{ form.as_p }}
+        <!-- tambahkan button -->
+        <button class="btn btn-primary">Simpan</button>
+        <a href="/buku" class="btn btn-danger">Kembali</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

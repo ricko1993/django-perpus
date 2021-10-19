@@ -1,5 +1,4 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <!-- digunakan untuk mengetes sebelum membuat database
 <h2>Daftar buku</h2>
@@ -10,7 +9,6 @@
 {{ penulis }}  
 -->
 
-
 <!-- digunakan setelah membuat database (ORM)
 <h2>Daftar buku</h2>
 {% for buku in books %}
@@ -18,36 +16,78 @@ menampilkan judul buku dari database buku
 <li>{{ buku.judul }}</li>  
 {% endfor %}-->
 
-
 <!-- membuat tabel -->
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table tabel-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>JUDUL</th>
-                        <th>PENULIS</th>
-                        <th>PENERBIT</th>
-                        <th>JUMLAH</th>
-                        <th>KELOMPOK</th>
-                    </tr>
-                </thead>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        DATA BUKU
+        <a href="{% url 'tambah_buku' %}">Tambah</a>
+      </h3>
+      <table class="table tabel-bordered table-striped">
+        <thead>
+          <tr>
+            <th>JUDUL</th>
+            <th>PENULIS</th>
+            <th>PENERBIT</th>
+            <th>JUMLAH</th>
+            <th>KELOMPOK</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
 
-                <tbody>
-                    {% for buku in books %}
-                    <tr>
-                        <td>{{ buku.judul }}</td>
-                        <td>{{ buku.penulis }}</td>
-                        <td>{{ buku.penerbit }}</td>
-                        <td>{{ buku.jumlah }}</td>
-                        <td>{{ buku.kelompok_id }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        <tbody>
+          {% for buku in books %}
+          <tr>
+            <td>
+              <a href="{% url 'ubah_buku' buku.id %}">{{ buku.judul }}</a>
+            </td>
+            <td>{{ buku.penulis }}</td>
+            <td>{{ buku.penerbit }}</td>
+            <td>{{ buku.jumlah }}</td>
+            <td>{{ buku.kelompok_id }}</td>
+            <td>
+              <button
+                data-toggle="modal"
+                data-target="#hapus-{{ buku.id }}"
+                class="btn btn-danger"
+              >
+                Hapus
+              </button>
+            </td>
+
+            <div class="modal" id="hapus-{{ buku.id }}">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="modal-title">
+                      <h3>Hapus</h3>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    Apakah anda yakin ingin menghapus
+                    <strong>{{ buku.judul | upper }}</strong>?
+                  </div>
+                  <div class="modal-footer">
+                    <a
+                      href="{% url 'hapus_buku' buku.id %}"
+                      class="btn btn-danger"
+                      >Hapus</a
+                    >
+                    <button class="btn btn-dark" data-dismiss="modal">
+                      Tidak
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
 
 {% endblock %}
