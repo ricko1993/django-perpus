@@ -10,10 +10,44 @@
 {{ penulis }}  
 -->
 
-<!-- digunakan setelah membuat database (ORM) -->
+
+<!-- digunakan setelah membuat database (ORM)
 <h2>Daftar buku</h2>
 {% for buku in books %}
-<!-- menampilkan judul buku dari database buku -->
-<li>{{ buku.judul }}</li>
-{% endfor %}
+menampilkan judul buku dari database buku 
+<li>{{ buku.judul }}</li>  
+{% endfor %}-->
+
+
+<!-- membuat tabel -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table tabel-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>JUDUL</th>
+                        <th>PENULIS</th>
+                        <th>PENERBIT</th>
+                        <th>JUMLAH</th>
+                        <th>KELOMPOK</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for buku in books %}
+                    <tr>
+                        <td>{{ buku.judul }}</td>
+                        <td>{{ buku.penulis }}</td>
+                        <td>{{ buku.penerbit }}</td>
+                        <td>{{ buku.jumlah }}</td>
+                        <td>{{ buku.kelompok_id }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
