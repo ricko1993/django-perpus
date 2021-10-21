@@ -22,11 +22,13 @@ menampilkan judul buku dari database buku
     <div class="col-md-12">
       <h3>
         DATA BUKU
-        <a href="{% url 'tambah_buku' %}">Tambah</a>
+        <a href="{% url 'tambah_buku' %}" class="btn btn-primary">Tambah</a>
+        <a href="{% url 'export_xls' %}" class="btn btn-success">Export .xls</a>
       </h3>
       <table class="table tabel-bordered table-striped">
         <thead>
           <tr>
+            <th>COVER</th>
             <th>JUDUL</th>
             <th>PENULIS</th>
             <th>PENERBIT</th>
@@ -39,6 +41,11 @@ menampilkan judul buku dari database buku
         <tbody>
           {% for buku in books %}
           <tr>
+            <td>
+              {% if buku.cover %}
+                <img src="{{ buku.cover.url }}" width="90">
+              {% endif %}
+            </td>
             <td>
               <a href="{% url 'ubah_buku' buku.id %}">{{ buku.judul }}</a>
             </td>

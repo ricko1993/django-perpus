@@ -10,13 +10,14 @@
             {% endif %}
 
             <!-- jangan lupa isi action -->
-            <form action="/tambah-buku/" method="post">
+            <form action="/tambah-buku/" method="post" enctype="multipart/form-data">
                 <!-- tambahkan csrf_token -->
                 {% csrf_token %}
                 <!-- tambahkan .as_p agar form terurut seperti paragraf -->
                 {{ form.as_p }} 
                 <!-- tambahkan button -->
                 <button class="btn btn-primary">Tambah Buku</button>
+                <a href="{% url 'buku' %}" class="btn btn-danger">Kembali</a>
             </form>
             
         </div>
