@@ -1,6 +1,6 @@
 # django-perpustakaan
 
-1. Untuk menjalankannya
+    Untuk menjalankannya
     buka terminal lalu ketikan:
     python manage.py run server
     lalu ketikan http://127.0.0.1:8000/buku/
