@@ -2,8 +2,10 @@
 
     Untuk menjalankannya
     buka terminal lalu ketikan:
-    python manage.py run server
-    lalu ketikan http://127.0.0.1:8000/buku/
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py runserver
+    lalu ketikan di browser http://127.0.0.1:8000/buku/
     masukan username = user 
     masukan password = PnC6hg_L_p-@#D/
     
